@@ -9,7 +9,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public void clickFunction1(View view){
         EditText myTextField1 = (EditText) findViewById(R.id.myTextField1);
@@ -44,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         EditText myTextField2 = (EditText) findViewById(R.id.myTextField2);
         int secondNum = Integer.parseInt(String.valueOf(myTextField2.getText()));
         if(secondNum != 0){
-            double total = firstNum / secondNum;
-            goToActivity(String.valueOf(total));
+            double total = firstNum / Double.valueOf(secondNum);
+            goToActivity(String.valueOf(df.format(total)));
         } else {
             Toast.makeText(getBaseContext(), "Cannot divide by zero", Toast.LENGTH_SHORT).show();
         }
